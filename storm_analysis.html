@@ -171,16 +171,16 @@ head(storm.raw)</code></pre>
 ## 5     3412      8642          0          0              5
 ## 6     3450      8748          0          0              6</code></pre>
 <p>Since we are concerned with the relationship between types of events (<strong>EVTYPE</strong>) and population health (<strong>FATALIITIES</strong> &amp; <strong>INJURIES</strong>) or economic consequences (<strong>PROPDMG</strong> &amp; <strong>CROPDMG</strong>), we need to extract these 5 colmuns, and removing NA values for the purpose of data cleaning.</p>
-<pre class="r"><code>## extract the only 7 columns that we are interested in: 
+<pre class="r"><code>## extract the only 5 columns that we are interested in: 
 ## EVTYPE, FATALITIES, INJURIES, PROPDMG, CROPDMG
 storm.interested &lt;- storm.raw[, c(&quot;EVTYPE&quot;, &quot;FATALITIES&quot;, &quot;INJURIES&quot;, &quot;PROPDMG&quot;, &quot;CROPDMG&quot;)]
 
-## remove any rows that have NA values in any of these 7 variables
+## remove any rows that have NA values in any of these 5 variables
 storm.clean &lt;- storm.interested[!is.na(storm.interested$EVTYPE) &amp; 
-                                   !is.na(storm.interested$FATALITIES) &amp; 
-                                   !is.na(storm.interested$INJURIES) &amp; 
-                                   !is.na(storm.interested$PROPDMG) &amp; 
-                                   !is.na(storm.interested$CROPDMG), ]
+                                !is.na(storm.interested$FATALITIES) &amp; 
+                                !is.na(storm.interested$INJURIES) &amp; 
+                                !is.na(storm.interested$PROPDMG) &amp; 
+                                !is.na(storm.interested$CROPDMG), ]
 
 ## convert all lowercase letters to uppercase
 storm.clean$EVTYPE &lt;- toupper(storm.clean$EVTYPE)

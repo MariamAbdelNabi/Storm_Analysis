@@ -30,16 +30,16 @@ head(storm.raw)
 Since we are concerned with the relationship between types of events (**EVTYPE**) and population health (**FATALIITIES** & **INJURIES**) or economic consequences (**PROPDMG** & **CROPDMG**), we need to extract these 5 colmuns, and removing NA values for the purpose of data cleaning.
 
 ```{r data cleaning, echo=TRUE}
-## extract the only 7 columns that we are interested in: 
+## extract the only 5 columns that we are interested in: 
 ## EVTYPE, FATALITIES, INJURIES, PROPDMG, CROPDMG
 storm.interested <- storm.raw[, c("EVTYPE", "FATALITIES", "INJURIES", "PROPDMG", "CROPDMG")]
 
-## remove any rows that have NA values in any of these 7 variables
+## remove any rows that have NA values in any of these 5 variables
 storm.clean <- storm.interested[!is.na(storm.interested$EVTYPE) & 
-                                   !is.na(storm.interested$FATALITIES) & 
-                                   !is.na(storm.interested$INJURIES) & 
-                                   !is.na(storm.interested$PROPDMG) & 
-                                   !is.na(storm.interested$CROPDMG), ]
+                                !is.na(storm.interested$FATALITIES) & 
+                                !is.na(storm.interested$INJURIES) & 
+                                !is.na(storm.interested$PROPDMG) & 
+                                !is.na(storm.interested$CROPDMG), ]
 
 ## convert all lowercase letters to uppercase
 storm.clean$EVTYPE <- toupper(storm.clean$EVTYPE)
